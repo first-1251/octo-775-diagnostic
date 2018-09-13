@@ -2,6 +2,10 @@ package org.team1251.frc.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import org.team1251.frc.robot.commands.RunMotor;
+import org.team1251.frc.robot.commands.RunSide;
+import org.team1251.frc.robot.humanInterface.input.HumanInput;
+import org.team1251.frc.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -11,6 +15,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * directory.
  */
 public class Robot extends IterativeRobot {
+
+    /**
+     * Input from my master(s).
+     */
+    private HumanInput humanInput;
 
 
     /**
@@ -56,12 +65,28 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
 
-        //if (autonomousCommand != null) autonomousCommand.cancel();
+        DriveTrain driveTrain = new DriveTrain();
+
+        RunMotor runMotorLeftA = new RunMotor(driveTrain, Motor.LEFT_A);
+        RunMotor runMotorLeftB = new RunMotor(driveTrain, Motor.LEFT_B);
+
+        // TODO: Create the rest of the commands
+        RunMotor runMotorLeftC = null;
+        RunMotor runMotorLeftD = null;
+        RunMotor runMotorRightA = null;
+        RunMotor runMotorRightB = null;
+        RunMotor runMotorRightC = null;
+        RunMotor runMotorRightD = null;
+        RunSide runLeft = null;
+        RunSide runRight = null;
+
+        humanInput = new HumanInput();
+        humanInput.attachCommandTriggers(
+                runMotorLeftA, runMotorLeftB, runMotorLeftC, runMotorLeftD,
+                runMotorRightA, runMotorRightB, runMotorRightC, runMotorRightD,
+                runLeft, runRight
+        );
 
     }
 

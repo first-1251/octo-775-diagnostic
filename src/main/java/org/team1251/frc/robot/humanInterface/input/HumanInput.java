@@ -1,5 +1,14 @@
 package org.team1251.frc.robot.humanInterface.input;
 
+import edu.wpi.first.wpilibj.Joystick;
+import org.team1251.frc.robot.commands.RunMotor;
+import org.team1251.frc.robot.commands.RunSide;
+import org.team1251.frc.robotCore.humanInterface.input.SimpleAnalogButtonConfig;
+import org.team1251.frc.robotCore.humanInterface.input.SimpleStickConfig;
+import org.team1251.frc.robotCore.humanInterface.input.gamepad.GamePad;
+import org.team1251.frc.robotCore.humanInterface.input.gamepad.ModernGamePad;
+import org.team1251.frc.robotCore.humanInterface.input.triggers.ButtonTrigger;
+
 /**
  * The HumanInput encapsulates everything related to human input and provides a clean interface for all commands and
  * subsystems to use.
@@ -17,11 +26,21 @@ public class HumanInput {
     private boolean commandTriggersAttached = false;
 
     /**
+     * The primary input device
+     */
+    private GamePad gamePad;
+
+    /**
      * Creates a new instance
      */
     public HumanInput() {
-        // TODO: Inject or instantiate human input devices, store them in local private properties.
-
+        gamePad = new ModernGamePad(
+                new Joystick(0),
+                new SimpleStickConfig(.05, false, false),
+                new SimpleStickConfig(.05, false, false),
+                new SimpleAnalogButtonConfig(.05, .50),
+                new SimpleAnalogButtonConfig(.05, .50)
+        );
     }
 
     /**
@@ -34,7 +53,17 @@ public class HumanInput {
      * There is no built-in way to detach a command trigger. There is no built-in protection against
      * attaching two commands to the same trigger.
      */
-    public void attachCommandTriggers() {
+    public void attachCommandTriggers(
+            RunMotor runMotorLeftA,
+            RunMotor runMotorLeftB,
+            RunMotor runMotorLeftC,
+            RunMotor runMotorLeftD,
+            RunMotor runMotorRightA,
+            RunMotor runMotorRightB,
+            RunMotor runMotorRightC,
+            RunMotor runMotorRightD,
+            RunSide runLeft,
+            RunSide runRight) {
 
         // TODO: Inject commands which need to be attached to command triggers.
 
@@ -44,16 +73,22 @@ public class HumanInput {
         }
         commandTriggersAttached = true;
 
-        // TODO: Create the command triggers (Hint: org.team1251.frc.robotCore.humanInput.triggers.ButtonTrigger)
-        // TODO: Attach commands to the command triggers.
+        // Triggers for each of the left motors
+        new ButtonTrigger(gamePad.a()).whileHeld(runMotorLeftA);
+        new ButtonTrigger(gamePad.b()).whileHeld(runMotorLeftB);
+        new ButtonTrigger(gamePad.x()).whileHeld(runMotorLeftC);
+        new ButtonTrigger(gamePad.y()).whileHeld(runMotorLeftD);
 
-        // By Default, there is no reason to "remember" the commands or the triggers as class properties. But now
-        // would be a reasonable time to do it, if you have a reason to.
+        // Triggers for each of the right motors
+        new ButtonTrigger(gamePad.lt()).whileHeld(runMotorRightA);
+        new ButtonTrigger(gamePad.lb()).whileHeld(runMotorRightB);
+        new ButtonTrigger(gamePad.rt()).whileHeld(runMotorRightC);
+        new ButtonTrigger(gamePad.rb()).whileHeld(runMotorRightD);
+
+        // Use the thumb stick buttons to run full left or full right
+        new ButtonTrigger(gamePad.lsClick()).whileHeld(runLeft);
+        new ButtonTrigger(gamePad.rsClick()).whileHeld(runRight);
 
 
     }
-
-    // TODO: Implement public access to meaningful values, but NOT to the devices!
-    // Good: `public double getElevatorSpeed() { return gamePad.getVertical(); }`
-    // Bad:  `public GamePad getGamePad() { return gamePad; }
 }
