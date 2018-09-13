@@ -3,6 +3,8 @@ package org.team1251.frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import org.team1251.frc.robot.Motor;
+import org.team1251.frc.robot.robotMap.RobotMap;
+import org.team1251.frc.robotCore.robotMap.PortType;
 import org.team1251.frc.robotCore.subsystems.NoInitDefaultCmdSubsystem;
 
 public class DriveTrain extends NoInitDefaultCmdSubsystem {
@@ -34,11 +36,15 @@ public class DriveTrain extends NoInitDefaultCmdSubsystem {
     }
 
     private TalonSRX initLeadMotor(Motor motor) {
-        return null;
+        TalonSRX talonSRX = new TalonSRX(RobotMap.deviceManager.getPort(motor.getDeviceAssignment(), PortType.CAN));
+        talonSRX.setInverted(motor.isInverted());
+        return talonSRX;
     }
 
     private VictorSPX initFollowMotor(Motor motor) {
-       return null;
+        VictorSPX victor = new VictorSPX(RobotMap.deviceManager.getPort(motor.getDeviceAssignment(), PortType.CAN));
+        victor.setInverted(motor.isInverted());
+        return victor;
     }
 
     @Override
