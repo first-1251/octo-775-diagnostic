@@ -33,7 +33,7 @@ dependencies {
     compile wpilib() // Core stuff
     compile ctre()   // Talon SRX + friends
     compile navx()   // gyro/accelerometer/compass
-    compile 'com.github.first-1251:robot-core:master-SNAPSHOT'
+    compile 'com.github.first-1251:robot-core:5cc1922a4e'
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

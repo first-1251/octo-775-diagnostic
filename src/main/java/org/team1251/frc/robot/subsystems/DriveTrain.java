@@ -3,22 +3,19 @@ package org.team1251.frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import org.team1251.frc.robot.Motor;
-import org.team1251.frc.robot.robotMap.Devices;
-import org.team1251.frc.robot.robotMap.RobotMap;
-import org.team1251.frc.robotCore.robotMap.PortType;
 import org.team1251.frc.robotCore.subsystems.NoInitDefaultCmdSubsystem;
 
 public class DriveTrain extends NoInitDefaultCmdSubsystem {
 
-    private final TalonSRX motorLeftA = initLeadMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_LEFT_A, PortType.CAN));
-    private final VictorSPX motorLeftB = initFollowMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_LEFT_B, PortType.CAN));
-    private final VictorSPX motorLeftC = initFollowMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_LEFT_C, PortType.CAN));
-    private final VictorSPX motorLeftD = initFollowMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_LEFT_D, PortType.CAN));
+    private final TalonSRX motorLeftA = initLeadMotor(Motor.LEFT_A);
+    private final VictorSPX motorLeftB = initFollowMotor(Motor.LEFT_B);
+    private final VictorSPX motorLeftC = initFollowMotor(Motor.LEFT_C);
+    private final VictorSPX motorLeftD = initFollowMotor(Motor.LEFT_D);
 
-    private final TalonSRX motorRightA = initLeadMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_RIGHT_A, PortType.CAN));
-    private final VictorSPX motorRightB = initFollowMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_RIGHT_B, PortType.CAN));
-    private final VictorSPX motorRightC = initFollowMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_RIGHT_C, PortType.CAN));
-    private final VictorSPX motorRightD = initFollowMotor(RobotMap.deviceManager.getPort(Devices.DRIVE_RIGHT_D, PortType.CAN));
+    private final TalonSRX motorRightA = initLeadMotor(Motor.RIGHT_A);
+    private final VictorSPX motorRightB = initFollowMotor(Motor.RIGHT_B);
+    private final VictorSPX motorRightC = initFollowMotor(Motor.RIGHT_C);
+    private final VictorSPX motorRightD = initFollowMotor(Motor.RIGHT_D);
 
     /**
      * Runs a specific motor at a set power
@@ -36,14 +33,12 @@ public class DriveTrain extends NoInitDefaultCmdSubsystem {
         // TODO: Enable or disable follow mode on Left/Right motors B-D; Stop motors before switching.
     }
 
-    private TalonSRX initLeadMotor(int port) {
-        // TODO: Implement
+    private TalonSRX initLeadMotor(Motor motor) {
         return null;
     }
 
-    private VictorSPX initFollowMotor(int port) {
-        // TODO: Implement
-        return null;
+    private VictorSPX initFollowMotor(Motor motor) {
+       return null;
     }
 
     @Override
