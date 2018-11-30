@@ -1,6 +1,7 @@
 package org.team1251.frc.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import org.team1251.frc.robot.commands.RunMotor;
 import org.team1251.frc.robot.commands.RunSide;
@@ -20,6 +21,10 @@ public class Robot extends IterativeRobot {
      * Input from my master(s).
      */
     private HumanInput humanInput;
+
+    public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+
+    private DriveTrain driveTrain;
 
 
     /**
@@ -66,35 +71,37 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
 
-        DriveTrain driveTrain = new DriveTrain();
+        driveTrain = new DriveTrain();
 
-        RunMotor runMotorLeftA = new RunMotor(driveTrain, Motor.LEFT_A);
-        RunMotor runMotorLeftB = new RunMotor(driveTrain, Motor.LEFT_B);
+        RunMotor runMotorLFB = new RunMotor(driveTrain, Motor.LEFT_LFB);
+        RunMotor runMotorLFT = new RunMotor(driveTrain, Motor.LEFT_LFT);
+        RunMotor runMotorLBT = new RunMotor(driveTrain, Motor.LEFT_LBT);
+        RunMotor runMotorLBB = new RunMotor(driveTrain, Motor.LEFT_LBB);
+        RunMotor runMotorRFB = new RunMotor(driveTrain, Motor.RIGHT_RFB);
+        RunMotor runMotorRFT = new RunMotor(driveTrain, Motor.RIGHT_RFT);
+        RunMotor runMotorRBT = new RunMotor(driveTrain, Motor.RIGHT_RBT);
+        RunMotor runMotorRBB = new RunMotor(driveTrain, Motor.RIGHT_RBB);
 
-        // TODO: Create the rest of the commands
-        RunMotor runMotorLeftC = null;
-        RunMotor runMotorLeftD = null;
-        RunMotor runMotorRightA = null;
-        RunMotor runMotorRightB = null;
-        RunMotor runMotorRightC = null;
-        RunMotor runMotorRightD = null;
-        RunSide runLeft = null;
-        RunSide runRight = null;
+        RunSide runLeft = new RunSide(driveTrain, RunSide.Side.LEFT);
+        RunSide runRight = new RunSide(driveTrain, RunSide.Side.RIGHT);
 
         humanInput = new HumanInput();
         humanInput.attachCommandTriggers(
-                runMotorLeftA, runMotorLeftB, runMotorLeftC, runMotorLeftD,
-                runMotorRightA, runMotorRightB, runMotorRightC, runMotorRightD,
-                runLeft, runRight
-        );
+                runMotorLFB, runMotorLFT, runMotorLBT, runMotorLBB,
+                runMotorRFB, runMotorRFT, runMotorRBT, runMotorRBB,
+                runLeft, runRight);
 
+        driveTrain.humanInput = humanInput;
+//        driveTrain.setDefaultCommand(new DriveStraight(driveTrain, humanInput));
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+
         Scheduler.getInstance().run();
+
     }
 
     /**

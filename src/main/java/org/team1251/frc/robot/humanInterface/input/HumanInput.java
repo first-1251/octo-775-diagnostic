@@ -28,7 +28,7 @@ public class HumanInput {
     /**
      * The primary input device
      */
-    private GamePad gamePad;
+    public GamePad gamePad;
 
     /**
      * Creates a new instance
@@ -49,23 +49,23 @@ public class HumanInput {
      * This method should only ever be called once.
      *
      * ** WARNING **
+     * runMotorLFB, runMotorLFT, runMotorLBT, runMotorLBB,
+     *                 runMotorRFB, runMotorRFT, runMotorRBT, runMotorRBB,
      *
      * There is no built-in way to detach a command trigger. There is no built-in protection against
      * attaching two commands to the same trigger.
      */
     public void attachCommandTriggers(
-            RunMotor runMotorLeftA,
-            RunMotor runMotorLeftB,
-            RunMotor runMotorLeftC,
-            RunMotor runMotorLeftD,
-            RunMotor runMotorRightA,
-            RunMotor runMotorRightB,
-            RunMotor runMotorRightC,
-            RunMotor runMotorRightD,
+            RunMotor runMotorLFB,
+            RunMotor runMotorLFT,
+            RunMotor runMotorLBT,
+            RunMotor runMotorLBB,
+            RunMotor runMotorRFB,
+            RunMotor runMotorRFT,
+            RunMotor runMotorRBT,
+            RunMotor runMotorRBB,
             RunSide runLeft,
             RunSide runRight) {
-
-        // TODO: Inject commands which need to be attached to command triggers.
 
         // This the typical way to prevent duplicate bindings.
         if (commandTriggersAttached) {
@@ -74,21 +74,23 @@ public class HumanInput {
         commandTriggersAttached = true;
 
         // Triggers for each of the left motors
-        new ButtonTrigger(gamePad.a()).whileHeld(runMotorLeftA);
-        new ButtonTrigger(gamePad.b()).whileHeld(runMotorLeftB);
-        new ButtonTrigger(gamePad.x()).whileHeld(runMotorLeftC);
-        new ButtonTrigger(gamePad.y()).whileHeld(runMotorLeftD);
+        new ButtonTrigger(gamePad.a()).whileHeld(runMotorLFB);
+        new ButtonTrigger(gamePad.b()).whileHeld(runMotorLFT);
+        new ButtonTrigger(gamePad.x()).whileHeld(runMotorLBT);
+        new ButtonTrigger(gamePad.y()).whileHeld(runMotorLBB);
 
         // Triggers for each of the right motors
-        new ButtonTrigger(gamePad.lt()).whileHeld(runMotorRightA);
-        new ButtonTrigger(gamePad.lb()).whileHeld(runMotorRightB);
-        new ButtonTrigger(gamePad.rt()).whileHeld(runMotorRightC);
-        new ButtonTrigger(gamePad.rb()).whileHeld(runMotorRightD);
+        new ButtonTrigger(gamePad.lt()).whileHeld(runMotorRFB);
+        new ButtonTrigger(gamePad.lb()).whileHeld(runMotorRFT);
+        new ButtonTrigger(gamePad.rt()).whileHeld(runMotorRBT);
+        new ButtonTrigger(gamePad.rb()).whileHeld(runMotorRBB);
 
         // Use the thumb stick buttons to run full left or full right
-        new ButtonTrigger(gamePad.lsClick()).whileHeld(runLeft);
-        new ButtonTrigger(gamePad.rsClick()).whileHeld(runRight);
+//        new ButtonTrigger(gamePad.lsClick()).whileHeld(runLeft);
+//        new ButtonTrigger(gamePad.rsClick()).whileHeld(runRight);
+    }
 
-
+    public double getDriveStraightPower() {
+        return gamePad.ls().getVertical();
     }
 }

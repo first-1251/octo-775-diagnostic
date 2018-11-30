@@ -6,14 +6,14 @@ import org.team1251.frc.robot.robotMap.DeviceAssignment;
  * Used to identify/select a specific motor.
  */
 public enum Motor {
-    LEFT_A(false, DeviceAssignment.DRIVE_LEFT_A),
-    LEFT_B(false, DeviceAssignment.DRIVE_LEFT_B),
-    LEFT_C(false, DeviceAssignment.DRIVE_LEFT_C),
-    LEFT_D(false, DeviceAssignment.DRIVE_LEFT_D),
-    RIGHT_A(false, DeviceAssignment.DRIVE_RIGHT_A),
-    RIGHT_B(false, DeviceAssignment.DRIVE_RIGHT_B),
-    RIGHT_C(false, DeviceAssignment.DRIVE_RIGHT_C),
-    RIGHT_D(false, DeviceAssignment.DRIVE_RIGHT_D);
+    LEFT_LFB(false, DeviceAssignment.DRIVE_LEFT_FRONT_BOTTOM),
+    LEFT_LFT(false, DeviceAssignment.DRIVE_LEFT_FRONT_TOP),
+    LEFT_LBT(false, DeviceAssignment.DRIVE_LEFT_BACK_TOP),
+    LEFT_LBB(false, DeviceAssignment.DRIVE_LEFT_BACK_BOTTOM),
+    RIGHT_RFB(false, DeviceAssignment.DRIVE_RIGHT_FRONT_BOTTOM),
+    RIGHT_RFT(false, DeviceAssignment.DRIVE_RIGHT_FRONT_TOP),
+    RIGHT_RBT(false, DeviceAssignment.DRIVE_RIGHT_BACK_TOP),
+    RIGHT_RBB(false, DeviceAssignment.DRIVE_RIGHT_BACK_BOTTOM);
 
     private final boolean inverted;
 

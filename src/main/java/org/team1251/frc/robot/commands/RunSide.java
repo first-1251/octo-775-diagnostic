@@ -20,9 +20,9 @@ public class RunSide extends Command {
         // We always want to run Motor A since that is the one that leads the others. We just
         // need to decide whether to run the Left-A or Right-A
         if (side == Side.LEFT) {
-            this.motor = Motor.LEFT_A;
+            this.motor = Motor.LEFT_LFB;
         } else {
-            this.motor = Motor.RIGHT_A;
+            this.motor = Motor.RIGHT_RFB;
         }
 
     }

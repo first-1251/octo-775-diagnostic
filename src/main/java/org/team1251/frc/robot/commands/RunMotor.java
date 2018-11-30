@@ -4,21 +4,30 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.team1251.frc.robot.Motor;
 import org.team1251.frc.robot.subsystems.DriveTrain;
 
-// TODO: Implement
 public class RunMotor extends Command {
 
+    private final DriveTrain driveTrain;
+    private final Motor motor;
+
     public RunMotor(DriveTrain driveTrain, Motor motor) {
-        // TODO: Implement
+        this.driveTrain = driveTrain;
+        this.motor = motor;
+        requires(driveTrain);
+    }
+
+    @Override
+    protected void initialize() {
+        driveTrain.setFollowMode(false);
     }
 
     @Override
     protected void execute() {
-        // TODO: Run Motor
+        driveTrain.runMotor(motor, 1);
     }
 
     @Override
     protected void end() {
-        // TODO: Stop motor.
+        driveTrain.runMotor(motor, 0);
     }
 
     @Override

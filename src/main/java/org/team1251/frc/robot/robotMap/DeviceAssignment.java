@@ -11,15 +11,14 @@ import org.team1251.frc.robotCore.robotMap.PortType;
 public enum DeviceAssignment implements PortAssignable {
 
     // Replace with devices for your robot
-    // TODO: Set up the correct CAN ports
-    DRIVE_LEFT_A(PortType.CAN, 0),
-    DRIVE_LEFT_B(PortType.CAN, 1),
-    DRIVE_LEFT_C(PortType.CAN, 2),
-    DRIVE_LEFT_D(PortType.CAN, 3),
-    DRIVE_RIGHT_A(PortType.CAN, 4),
-    DRIVE_RIGHT_B(PortType.CAN, 5),
-    DRIVE_RIGHT_C(PortType.CAN, 6),
-    DRIVE_RIGHT_D(PortType.CAN, 7);
+    DRIVE_LEFT_FRONT_BOTTOM(PortType.CAN, 12),
+    DRIVE_LEFT_FRONT_TOP(PortType.CAN, 13),
+    DRIVE_LEFT_BACK_TOP(PortType.CAN, 14),
+    DRIVE_LEFT_BACK_BOTTOM(PortType.CAN, 15),
+    DRIVE_RIGHT_FRONT_BOTTOM(PortType.CAN, 3),
+    DRIVE_RIGHT_FRONT_TOP(PortType.CAN, 2),
+    DRIVE_RIGHT_BACK_TOP(PortType.CAN, 1),
+    DRIVE_RIGHT_BACK_BOTTOM(PortType.CAN, 0);
 
     /**
      * Port assignment for each Device
